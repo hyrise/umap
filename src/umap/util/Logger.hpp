@@ -49,7 +49,7 @@ class Logger {
 
   inline bool logLevelEnabled( message::Level level )
   {
-    if ( level < 0 || level >= message::Num_Levels || m_isEnabled[ level ] == false  )
+    if ( level >= message::Num_Levels || m_isEnabled[ level ] == false  )
       return false;
     else
       return true;

@@ -107,7 +107,7 @@ Uffd::uffd_handler( void )
       last_addr = (char*)(m_events[i].arg.pagefault.address);
 
 #ifndef UMAP_RO_MODE
-      bool iswrite = (m_events[i].arg.pagefault.flags & (UFFD_PAGEFAULT_FLAG_WP | UFFD_PAGEFAULT_FLAG_WRITE) != 0);
+      bool iswrite = m_events[i].arg.pagefault.flags & ((UFFD_PAGEFAULT_FLAG_WP | UFFD_PAGEFAULT_FLAG_WRITE) != 0);
 #else
       bool iswrite = false;
 #endif

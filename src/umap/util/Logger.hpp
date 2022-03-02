@@ -7,6 +7,8 @@
 #ifndef UMAP_Logger_HPP
 #define UMAP_Logger_HPP
 
+#include <iostream>
+#include <mutex>
 #include <string>
 
 namespace Umap {
@@ -39,6 +41,8 @@ class Logger {
                    const std::string& fileName,
                    int line ) noexcept;
 
+  void setOutputStream(std::ostream* output_stream) noexcept;
+
   static void initialize();
 
   static void finalize();
@@ -53,7 +57,11 @@ class Logger {
       return false;
     else
       return true;
-  };
+  }
+
+  std::ostream* m_out;
+
+  std::mutex g_logging_mutex;
 
 private:
   Logger( bool log_with_timestamp ) noexcept;

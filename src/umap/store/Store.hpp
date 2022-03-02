@@ -12,6 +12,8 @@
 namespace Umap {
 class Store {
   public:
+    virtual ~Store() = default;
+
     static Store* make_store(void* _region_, std::size_t _rsize_, std::size_t _alignsize_, int _fd_);
 
     virtual ssize_t read_from_store(char* buf, std::size_t nb, off_t off) = 0;
